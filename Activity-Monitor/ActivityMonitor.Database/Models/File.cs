@@ -13,4 +13,21 @@ namespace ActivityMonitor.Database.Models
         public ICollection<CommitFile> Commits { get; set; }
         public ICollection<CodeString> Strings { get; set; }
     }
+
+    class RepositoryConfig : IEntityTypeConfiguration<Repository>
+    {
+        public void Configure(EntityTypeBuilder<Repository> builder)
+        {
+            builder
+                .HasKey(x => x.Id);
+
+            builder
+                .Property(x => x.Name)
+                .IsRequired();
+
+            builder
+                .HasIndex(x => x.Name)
+                .IsUnique();
+        }
+    }
 }
