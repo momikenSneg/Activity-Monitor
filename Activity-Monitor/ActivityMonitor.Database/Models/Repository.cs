@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ActivityMonitor.Database.Models
 {
-    class Repository
+    public class Repository
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
