@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,20 +16,24 @@ namespace ActivityMonitor.Database.Models
         public ICollection<CodeString> Strings { get; set; }
     }
 
-    class RepositoryConfig : IEntityTypeConfiguration<Repository>
+    class FileConfig : IEntityTypeConfiguration<File>
     {
-        public void Configure(EntityTypeBuilder<Repository> builder)
+        public void Configure(EntityTypeBuilder<File> builder)
         {
             builder
                 .HasKey(x => x.Id);
 
             builder
-                .Property(x => x.Name)
-                .IsRequired();
+                .HasIndex(x => x.RepositoryId);
+            builder
+                .HasOne(x => x.Repository)
+                .WithMany(x => x.Files)
+                .HasForeignKey(x => x.RepositoryId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder
-                .HasIndex(x => x.Name)
-                .IsUnique();
+                .Property(x => x.Name)
+                .IsRequired();
         }
     }
 }
