@@ -93,6 +93,17 @@ namespace ActivityMonitor.PMT
         public int done_ratio { get; set; }
         public DateTime created_on { get; set; }
         public DateTime updated_on { get; set; }
-        //public IssueHistory[] journals { get; set; }
+        public IssueHistory[] journals { get; set; }
+    }
+    class ForProjectHistory
+    {
+        public Issue issue { get; set; }
+    }
+    public class IssueHistory
+    {
+        public int id { get; set; }
+        public IdName user { get; set; }
+        public string notes { get; set; }
+        public DateTime created_on { get; set; }
     }
 }
