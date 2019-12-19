@@ -97,7 +97,21 @@ namespace ActivityMonitor
         //TODO: добавлять в историю первое изменение на асайн то
         private async void FillIssueHistory(Tuple<Database.Models.Issue, string> issue)
         {
-            
+            var history = await pmt.GetTaskHistory(issue.Item1.Id);
+
+            Journal one = new Journal
+            {
+                Id = issue.Item1.StartDate.GetHashCode(),
+                AuthorId = issue.Item1.AuthorId,
+                Notes = "",
+                CreatedOn = issue.Item1.StartDate,
+                NameChange = "assigned_to_id",
+                OldValue = "0",
+                NewValue = issue.Item2,
+                IssueId = issue.Item1.Id
+            };
+
+            context.Journals.Add(one);
         }
 
         private string GetStatus(int id)
