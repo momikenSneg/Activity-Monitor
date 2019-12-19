@@ -63,5 +63,28 @@ namespace ActivityMonitor
         {
             
         }
+
+        private string GetStatus(int id)
+        {
+            switch (id)
+            {
+                case 1:
+                    return "New";
+                case 2:
+                    return "In Progress";
+                case 3:
+                    return "Resolved";
+                case 4:
+                    return "Feedback";
+                case 5:
+                    return "Closed";
+                case 6:
+                    return "Rejected";
+                case 7:
+                    return "Need more info";
+            }
+            return "non";
+        }
     }
+}
 }
