@@ -132,6 +132,22 @@ namespace ActivityMonitor
                     return "Rejected";
                 case 7:
                     return "Need more info";
+                case 8:
+                    return "Analysis";
+                case 9:
+                    return "Analysis completed";
+                case 10:
+                    return "Implementation";
+                case 11:
+                    return "Implemented";
+                case 12:
+                    return "Postponed";
+                case 13:
+                    return "Triggered";
+                case 14:
+                    return "Mitigated";
+                case 15:
+                    return "Canceled";
             }
             return "non";
         }
