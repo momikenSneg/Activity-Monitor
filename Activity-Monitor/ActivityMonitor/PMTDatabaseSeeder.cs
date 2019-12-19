@@ -25,13 +25,13 @@ namespace ActivityMonitor
             foreach (Database.Models.Project proj in pr)
             {
                 FillMembership(proj.Id);
-
                 var iss = await FillIssues(proj.Id);
 
-                foreach (Database.Models.Issue issue in iss)
+                foreach (Tuple<Database.Models.Issue, string> issue in iss)
                 {
                     FillIssueHistory(issue);
                 }
+
             }
         }
 
@@ -82,11 +82,11 @@ namespace ActivityMonitor
             }
         }
 
-        private async Task<List<Database.Models.Issue>> FillIssues(int projId)
+        private async Task<List<Tuple<Database.Models.Issue, string>>> FillIssues(int projId)
         {
             var issues = await pmt.GetTaskList(projId);
 
-            List<Database.Models.Issue> save = new List<Database.Models.Issue>();
+            List<Tuple<Database.Models.Issue, string>> save = new List<Tuple<Database.Models.Issue, string>>();
             for (int i = 0; i < issues.Length; i++)
             {
                 Database.Models.Issue one = new Database.Models.Issue
@@ -100,7 +100,7 @@ namespace ActivityMonitor
                 };
 
                 context.Issues.Add(one);
-                save.Add(one);
+                save.Add(new Tuple<Database.Models.Issue, string>(one, issues[i].assigned_to.id.ToString()));
             }
             return save;
         }
