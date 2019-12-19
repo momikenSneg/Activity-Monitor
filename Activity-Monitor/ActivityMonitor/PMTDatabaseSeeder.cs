@@ -75,10 +75,10 @@ namespace ActivityMonitor
         {
             var issues = await pmt.GetTaskList(projId);
 
-            List<Tuple<Issue, string>> save = new List<Tuple<Issue, string>>();
+            List<Tuple<Database.Models.Issue, string>> save = new List<Tuple<Database.Models.Issue, string>>();
             for (int i = 0; i < issues.Length; i++)
             {
-                Issue one = new Issue
+                Database.Models.Issue one = new Database.Models.Issue
                 {
                     Id = issues[i].id,
                     TrackerName = issues[i].tracker.name,
@@ -89,7 +89,7 @@ namespace ActivityMonitor
                 };
 
                 context.Issues.Add(one);
-                save.Add(new Tuple<Issue, string>(one, issues[i].assigned_to.id.ToString()));
+                save.Add(new Tuple<Database.Models.Issue, string>(one, issues[i].assigned_to.id.ToString()));
             }
             return save;
         }
