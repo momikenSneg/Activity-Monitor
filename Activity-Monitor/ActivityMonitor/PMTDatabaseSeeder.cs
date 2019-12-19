@@ -112,6 +112,22 @@ namespace ActivityMonitor
             };
 
             context.Journals.Add(one);
+
+            for (int i = 0; i < history.Length; i++)
+            {
+
+                //one = new Journal
+                //{
+                //    Id = history[i].id,
+                //    AuthorId = history[i],
+                //    Notes = history[i],
+                //    CreatedOn = history[i],
+                //    NameChange = history[i],
+                //    OldValue = history[i],
+                //    NewValue = history[i],
+                //    IssueId = history[i]
+                //};
+            }
         }
 
         private string GetStatus(int id)
