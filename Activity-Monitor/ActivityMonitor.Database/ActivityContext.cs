@@ -1,8 +1,5 @@
 ﻿using ActivityMonitor.Database.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ActivityMonitor.Database
 {
@@ -28,7 +25,6 @@ namespace ActivityMonitor.Database
         public DbSet<Issue> Issues { get; set; }
         public DbSet<Journal> Journals { get; set; }
         public DbSet<ProjectMembership> ProjectMemberships { get; set; }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
