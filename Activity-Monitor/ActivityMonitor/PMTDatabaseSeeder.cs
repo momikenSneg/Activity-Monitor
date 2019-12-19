@@ -22,6 +22,12 @@ namespace ActivityMonitor
         public async void Seed()
         {
             var pr = await FillProjects();
+            foreach (Database.Models.Project proj in pr)
+            {
+                FillMembership(proj.Id);
+                
+
+            }
         }
 
         private async Task<List<Database.Models.Project>> FillProjects()
