@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using ActivityMonitor.Database.Models;
+using Newtonsoft.Json;
 
 namespace ActivityMonitor.PMT
 {
@@ -12,9 +12,12 @@ namespace ActivityMonitor.PMT
         {
         }
 
-        public override Task<Project[]> GetProjects()
+        public override async Task<Project[]> GetProjects()
         {
-            throw new NotImplementedException();
+            var str = await _client.GetStringAsync("/projects.json");
+            var projects = JsonConvert.DeserializeObject<Projects>(str);
+
+            return projects.projects;
         }
 
         public override Task<Membership[]> GetProjectUsers(int id)
