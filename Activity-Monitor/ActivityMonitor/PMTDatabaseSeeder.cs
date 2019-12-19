@@ -47,5 +47,20 @@ namespace ActivityMonitor
             }
             return save;
         }
+
+        private async void FillMembership(int projId)
+        {
+            
+        }
+
+        private async Task<List<Tuple<Issue, string>>> FillIssues(int projId)
+        {
+           
+        }
+
+        private async void FillIssueHistory(Tuple<Issue, string> issue)
+        {
+            
+        }
     }
 }
