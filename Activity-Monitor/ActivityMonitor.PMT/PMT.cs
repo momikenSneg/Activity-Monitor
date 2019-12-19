@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace ActivityMonitor.PMT
 {
-    class PMT : APMT
+    public class PMT : APMT
     {
         public PMT(string login, string password, Uri pmtUri) : base(login, password, pmtUri)
         {
