@@ -53,13 +53,13 @@ namespace ActivityMonitor
             
         }
 
-        private async Task<List<Tuple<Issue, string>>> FillIssues(int projId)
+        private async Task<List<Tuple<Database.Models.Issue, string>>> FillIssues(int projId)
         {
            
         }
 
         //TODO: добавлять в историю первое изменение на асайн то
-        private async void FillIssueHistory(Tuple<Issue, string> issue)
+        private async void FillIssueHistory(Tuple<Database.Models.Issue, string> issue)
         {
             
         }
