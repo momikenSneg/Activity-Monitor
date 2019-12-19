@@ -71,11 +71,11 @@ namespace ActivityMonitor
             }
         }
 
-        private async Task<List<Tuple<Database.Models.Issue, string>>> FillIssues(int projId)
+        private async Task<List<Database.Models.Issue>> FillIssues(int projId)
         {
             var issues = await pmt.GetTaskList(projId);
 
-            List<Tuple<Database.Models.Issue, string>> save = new List<Tuple<Database.Models.Issue, string>>();
+            List<Database.Models.Issue> save = new List<Database.Models.Issue>();
             for (int i = 0; i < issues.Length; i++)
             {
                 Database.Models.Issue one = new Database.Models.Issue
@@ -89,7 +89,7 @@ namespace ActivityMonitor
                 };
 
                 context.Issues.Add(one);
-                save.Add(new Tuple<Database.Models.Issue, string>(one, issues[i].assigned_to.id.ToString()));
+                save.Add(one);
             }
             return save;
         }
