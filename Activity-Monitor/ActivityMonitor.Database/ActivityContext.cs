@@ -34,5 +34,10 @@ namespace ActivityMonitor.Database
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ActivityContext).Assembly);
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=usersdb;Username=postgres;Password=123456789");
+        }
     }
 }
