@@ -7,11 +7,22 @@ using System.Threading.Tasks;
 namespace ActivityMonitor.PMT
 {
     /// <summary>
-    /// Common interface for project managment tools
+    /// Common abstract class for project managment tools
     /// </summary>
-    public interface APMT
+    public abstract class APMT
     {
-        string[] GetProjects();
-        Task<string[]> GetUsers(string project);
+        protected HttpClient _client;
+        public APMT(string login, string password, Uri pmtUri)
+        {
+            _client = new HttpClient
+            {
+                BaseAddress = pmtUri
+            };
+            var byteArray = Encoding.ASCII.GetBytes($"{login}:{password}");
+            _client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
+        }
+
+        public abstract string[] GetProjects();
+        public abstract Task<string[]> GetUsers(string project);
     }
 }
