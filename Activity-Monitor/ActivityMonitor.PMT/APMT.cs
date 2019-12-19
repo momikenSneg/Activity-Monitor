@@ -25,6 +25,6 @@ namespace ActivityMonitor.PMT
         public abstract Task<Project[]> GetProjects();
         public abstract Task<Membership[]> GetProjectUsers(int id);
         public abstract Task<Issue[]> GetTaskList(int id);
-        public abstract Task<string[]> GetTaskHistory(int id);
+        public abstract Task<IssueHistory[]> GetTaskHistory(int id);
     }
 }
