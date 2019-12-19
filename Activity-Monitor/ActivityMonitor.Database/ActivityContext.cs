@@ -13,12 +13,15 @@ namespace ActivityMonitor.Database
         {
         }
 
+        //Git
         public DbSet<CodeComplexity> CodeComplexitySamples { get; set; }
         public DbSet<CodeString> CodeStrings { get; set; }
         public DbSet<Commit> Commits { get; set; }
         public DbSet<Developer> Developers { get; set; }
         public DbSet<File> Files { get; set; }
         public DbSet<Repository> Repositories { get; set; }
+        public DbSet<CommitFile> CommitFiles { get; set; }
+        public DbSet<DeveloperRepository> DeveloperRepositories { get; set; }
         // Redmine
         public DbSet<Project> Projects { get; set; }
         public DbSet<Membership> Memberships { get; set; }
