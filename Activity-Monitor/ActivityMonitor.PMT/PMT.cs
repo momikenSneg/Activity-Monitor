@@ -59,4 +59,20 @@ namespace ActivityMonitor.PMT
         public string name { get; set; }
         public string value { get; set; }
     }
+
+    class Memberships
+    {
+        public Membership[] memberships { get; set; }
+    }
+    public class Membership
+    {
+        public int id { get; set; }
+        public IdName user { get; set; }
+        public IdName[] roles { get; set; }
+    }
+    public class IdName
+    {
+        public int id { get; set; }
+        public string name { get; set; }
+    }
 }
