@@ -34,9 +34,13 @@ namespace ActivityMonitor.PMT
             throw new NotImplementedException();
         }
 
-        public override Task<Issue[]> GetTaskList(int id)
+        public override async Task<Issue[]> GetTaskList(int id)
         {
-            throw new NotImplementedException();
+            string url = $"/issues.json?project_id={id}";
+            var str = await base._client.GetStringAsync(url);
+            var issues = JsonConvert.DeserializeObject<Issues>(str);
+
+            return issues.issues;
         }
     }
 
