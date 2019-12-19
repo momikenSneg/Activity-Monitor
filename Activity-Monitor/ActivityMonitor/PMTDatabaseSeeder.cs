@@ -19,9 +19,9 @@ namespace ActivityMonitor
             prj = projects;
             pmt = new PMT.PMT(name, password, new Uri(url));
         }
-        public void Seed()
+        public async void Seed()
         {
-            throw new NotImplementedException();
+            var pr = await FillProjects();
         }
 
         private async Task<List<Database.Models.Project>> FillProjects()
