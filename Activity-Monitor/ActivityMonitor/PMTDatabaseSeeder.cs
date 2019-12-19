@@ -73,7 +73,25 @@ namespace ActivityMonitor
 
         private async Task<List<Tuple<Database.Models.Issue, string>>> FillIssues(int projId)
         {
-           
+            var issues = await pmt.GetTaskList(projId);
+
+            List<Tuple<Issue, string>> save = new List<Tuple<Issue, string>>();
+            for (int i = 0; i < issues.Length; i++)
+            {
+                Issue one = new Issue
+                {
+                    Id = issues[i].id,
+                    TrackerName = issues[i].tracker.name,
+                    AuthorId = issues[i].author.id,
+                    StartDate = issues[i].start_date,
+                    DueDate = issues[i].due_date,
+                    ProjectId = projId
+                };
+
+                context.Issues.Add(one);
+                save.Add(new Tuple<Issue, string>(one, issues[i].assigned_to.id.ToString()));
+            }
+            return save;
         }
 
         //TODO: добавлять в историю первое изменение на асайн то
