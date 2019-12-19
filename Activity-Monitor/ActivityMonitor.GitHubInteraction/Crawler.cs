@@ -18,7 +18,7 @@ namespace ActivityMonitor.GitHubInteraction
             client.Credentials = basicAuth;
         }
 
-        private List<Database.Models.Repository> repositories = new List<Database.Models.Repository>();
+        private List<Repository> repositories = new List<Repository>();
         private List<Developer> developers = new List<Developer>();
         private List<File> files = new List<File>();
         private List<Database.Models.Commit> commits = new List<Database.Models.Commit>();
