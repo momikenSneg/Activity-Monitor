@@ -29,9 +29,13 @@ namespace ActivityMonitor.PMT
             return memberships.memberships;
         }
 
-        public override Task<IssueHistory[]> GetTaskHistory(int id)
+        public override async Task<IssueHistory[]> GetTaskHistory(int id)
         {
-            throw new NotImplementedException();
+            string url = $"/issues/{id}.json?include=journals";
+            var str = await base._client.GetStringAsync(url);
+            var issueHistory = JsonConvert.DeserializeObject<ForProjectHistory>(str);
+
+            return issueHistory.issue.journals;
         }
 
         public override async Task<Issue[]> GetTaskList(int id)
