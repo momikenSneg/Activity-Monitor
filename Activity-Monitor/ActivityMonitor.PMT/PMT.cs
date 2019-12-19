@@ -105,5 +105,13 @@ namespace ActivityMonitor.PMT
         public IdName user { get; set; }
         public string notes { get; set; }
         public DateTime created_on { get; set; }
+        public Details[] details { get; set; }
+    }
+    public class Details
+    {
+        public string property { get; set; }
+        public string name { get; set; }
+        public string old_value { get; set; }
+        public string new_value { get; set; }
     }
 }
