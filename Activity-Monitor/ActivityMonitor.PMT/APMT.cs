@@ -22,7 +22,9 @@ namespace ActivityMonitor.PMT
             _client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
         }
 
-        public abstract string[] GetProjects();
-        public abstract Task<string[]> GetUsers(string project);
+        public abstract Task<Project[]> GetProjects();
+        public abstract Task<Membership[]> GetProjectUsers(int id);
+        public abstract Task<Issue[]> GetTaskList(int id);
+        public abstract Task<IssueHistory[]> GetTaskHistory(int id);
     }
 }
