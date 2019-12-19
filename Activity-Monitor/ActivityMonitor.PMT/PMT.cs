@@ -25,7 +25,7 @@ namespace ActivityMonitor.PMT
             throw new NotImplementedException();
         }
 
-        public override Task<string[]> GetTaskHistory(int id)
+        public override Task<IssueHistory[]> GetTaskHistory(int id)
         {
             throw new NotImplementedException();
         }
@@ -74,5 +74,25 @@ namespace ActivityMonitor.PMT
     {
         public int id { get; set; }
         public string name { get; set; }
+    }
+    class Issues
+    {
+        public Issue[] issues { get; set; }
+    }
+    public class Issue
+    {
+        public int id { get; set; }
+        public IdName tracker { get; set; }
+        public IdName status { get; set; }
+        public IdName priority { get; set; }
+        public IdName author { get; set; }
+        public IdName assigned_to { get; set; }
+        public string subject { get; set; }
+        public DateTime start_date { get; set; }
+        public DateTime due_date { get; set; }
+        public int done_ratio { get; set; }
+        public DateTime created_on { get; set; }
+        public DateTime updated_on { get; set; }
+        //public IssueHistory[] journals { get; set; }
     }
 }
