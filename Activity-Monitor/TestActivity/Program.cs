@@ -9,7 +9,7 @@ namespace TestActivity
         static async Task Main(string[] args)
         {
             var client = new PMT("e.snegireva", "novgorodskii98", new Uri("https://ai.nsu.ru"));
-            var proj = await client.GetTaskList(74);
+            var proj = await client.GetTaskHistory(2689);
 
             Console.WriteLine("Hello World!");
         }
