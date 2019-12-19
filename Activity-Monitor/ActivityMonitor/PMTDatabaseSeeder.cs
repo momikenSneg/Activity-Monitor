@@ -50,7 +50,25 @@ namespace ActivityMonitor
 
         private async void FillMembership(int projId)
         {
-            
+            var memberships = await pmt.GetProjectUsers(projId);
+
+            for (int i = 0; i < memberships.Length; i++)
+            {
+                Database.Models.Membership one = new Database.Models.Membership
+                {
+                    Id = memberships[i].user.id,
+                    Name = memberships[i].user.name
+                };
+
+                ProjectMembership pm = new ProjectMembership
+                {
+                    ProjectId = projId,
+                    MembershipId = memberships[i].user.id
+                };
+
+                context.Memberships.Add(one);
+                context.ProjectMemberships.Add(pm);
+            }
         }
 
         private async Task<List<Tuple<Database.Models.Issue, string>>> FillIssues(int projId)
