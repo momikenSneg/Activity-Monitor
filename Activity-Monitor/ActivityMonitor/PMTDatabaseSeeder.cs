@@ -4,7 +4,11 @@ using System.Text;
 
 namespace ActivityMonitor
 {
-    class PMTDatabaseSeeder
+    class PMTDatabaseSeeder : IDatabaseSeeder
     {
+        public void Seed()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
