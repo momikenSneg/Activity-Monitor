@@ -1,7 +1,8 @@
 ﻿using Octokit;
-using System;
+using System.Threading.Tasks;
+//using ActivityMonitor.Database.Models;
 using System.Collections.Generic;
-using System.Text;
+using ActivityMonitor.Database.Models;
 
 namespace ActivityMonitor.GitHubInteraction
 {
@@ -16,5 +17,10 @@ namespace ActivityMonitor.GitHubInteraction
             var basicAuth = new Credentials(login, password);
             client.Credentials = basicAuth;
         }
+
+        private List<Database.Models.Repository> repositories = new List<Database.Models.Repository>();
+        private List<Developer> developers = new List<Developer>();
+        private List<File> files = new List<File>();
+        private List<Database.Models.Commit> commits = new List<Database.Models.Commit>();
     }
 }
