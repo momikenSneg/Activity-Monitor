@@ -25,8 +25,13 @@ namespace ActivityMonitor
             foreach (Database.Models.Project proj in pr)
             {
                 FillMembership(proj.Id);
-                
 
+                var iss = await FillIssues(proj.Id);
+
+                foreach (Database.Models.Issue issue in iss)
+                {
+                    FillIssueHistory(issue);
+                }
             }
         }
 
