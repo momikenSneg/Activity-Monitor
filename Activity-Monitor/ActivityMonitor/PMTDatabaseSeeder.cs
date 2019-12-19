@@ -24,15 +24,15 @@ namespace ActivityMonitor
             throw new NotImplementedException();
         }
 
-        private async Task<List<Project>> FillProjects()
+        private async Task<List<Database.Models.Project>> FillProjects()
         {
-            List<Project> save = new List<Project>();
+            List<Database.Models.Project> save = new List<Database.Models.Project>();
             var projects = await pmt.GetProjects();
             for (int i = 0; i < projects.Length; i++)
             {
                 if (!prj.Contains(projects[i].name))
                     continue;
-                Project one = new Project
+                Database.Models.Project one = new Database.Models.Project
                 {
                     Id = projects[i].id,
                     Name = projects[i].name,
