@@ -58,6 +58,7 @@ namespace ActivityMonitor
            
         }
 
+        //TODO: добавлять в историю первое изменение на асайн то
         private async void FillIssueHistory(Tuple<Issue, string> issue)
         {
             
