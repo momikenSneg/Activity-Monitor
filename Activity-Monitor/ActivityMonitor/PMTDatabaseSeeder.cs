@@ -132,6 +132,7 @@ namespace ActivityMonitor
                     IssueId = issue.Item1.Id
                 };
             }
+            context.Journals.Add(one);
         }
 
         private string GetStatus(int id)
