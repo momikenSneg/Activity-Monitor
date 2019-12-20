@@ -13,6 +13,7 @@ namespace ActivityMonitor
         private ActivityContext context;
         private List<string> prj;
         private APMT pmt;
+        Random random = new Random();
         public PMTDatabaseSeeder(ActivityContext c, List<string> projects, string name, string password, string url)
         {
             context = c;
@@ -117,7 +118,7 @@ namespace ActivityMonitor
 
             Journal one = new Journal
             {
-                Id = issue.Item1.StartDate.GetHashCode(),
+                Id = random.Next(),
                 AuthorId = issue.Item1.AuthorId,
                 Notes = "",
                 CreatedOn = issue.Item1.StartDate,
