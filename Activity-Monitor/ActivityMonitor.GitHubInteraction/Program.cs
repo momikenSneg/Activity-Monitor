@@ -34,7 +34,15 @@ namespace ActivityMonitor.GitHubInteraction
         }
         static void Main(string[] args)
         {
-            
+            AuthGitInfo info;
+            using (Stream fs = GetStream())
+            {
+                var ser = new DataContractJsonSerializer(typeof(AuthGitInfo));
+                fs.Position = 0;
+                info = (AuthGitInfo)ser.ReadObject(fs);
+            }
+            var crawler = new Crawler(info.login, info.password);
+            await crawler.Gathering(info.repositories);
         }
 
         private static Stream GetStream()
