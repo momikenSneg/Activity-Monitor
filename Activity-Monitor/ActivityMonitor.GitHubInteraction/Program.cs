@@ -1,4 +1,6 @@
-﻿using System;
+﻿using System.IO;
+using System.Runtime.Serialization.Json;
+using System.Threading.Tasks;
 
 namespace ActivityMonitor.GitHubInteraction
 {
@@ -32,7 +34,7 @@ namespace ActivityMonitor.GitHubInteraction
         }
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            
         }
 
         private static Stream GetStream()
