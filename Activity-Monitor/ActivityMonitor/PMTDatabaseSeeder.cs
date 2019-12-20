@@ -83,11 +83,11 @@ namespace ActivityMonitor
             }
         }
 
-        private async Task<List<Tuple<Database.Models.Issue, string>>> FillIssues(int projId)
+        private async Task<List<Tuple<Issue, string>>> FillIssues(int projId)
         {
             int offset = 0;
             var issues = await pmt.GetTaskList(projId, offset);
-            List<Tuple<Database.Models.Issue, string>> save = new List<Tuple<Database.Models.Issue, string>>();
+            List<Tuple<Issue, string>> save = new List<Tuple<Issue, string>>();
 
             while(issues)
 
@@ -106,13 +106,13 @@ namespace ActivityMonitor
                 };
 
                 context.Issues.Add(one);
-                save.Add(new Tuple<Database.Models.Issue, string>(one, issues[i].assigned_to.id.ToString()));
+                save.Add(new Tuple<Issue, string>(one, issues[i].assigned_to.id.ToString()));
             }
             return save;
         }
 
         //TODO: добавлять в историю первое изменение на асайн то
-        private async void FillIssueHistory(Tuple<Database.Models.Issue, string> issue)
+        private async void FillIssueHistory(Tuple<Issue, string> issue)
         {
             var history = await pmt.GetTaskHistory(issue.Item1.Id);
             Journal one;
