@@ -111,7 +111,6 @@ namespace ActivityMonitor
             return save;
         }
 
-        //TODO: добавлять в историю первое изменение на асайн то
         private async void FillIssueHistory(Tuple<Issue, string> issue)
         {
             var history = await pmt.GetTaskHistory(issue.Item1.Id);
