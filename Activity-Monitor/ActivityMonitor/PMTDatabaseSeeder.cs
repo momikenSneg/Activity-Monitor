@@ -115,20 +115,7 @@ namespace ActivityMonitor
         private async void FillIssueHistory(Tuple<Database.Models.Issue, string> issue)
         {
             var history = await pmt.GetTaskHistory(issue.Item1.Id);
-
-            Journal one = new Journal
-            {
-                Id = random.Next(),
-                AuthorId = issue.Item1.AuthorId,
-                Notes = "",
-                CreatedOn = issue.Item1.StartDate,
-                NameChange = "assigned_to_id",
-                OldValue = "0",
-                NewValue = issue.Item2,
-                IssueId = issue.Item1.Id
-            };
-
-            context.Journals.Add(one);
+            Journal one;
 
             for (int i = 0; i < history.Length; i++)
             {
