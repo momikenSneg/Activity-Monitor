@@ -12,7 +12,7 @@ using Task = ActivityMonitor.PMT.Task;
 
 namespace ActivityMonitor
 {
-    class PMTDatabaseSeeder
+    class PMTDatabaseSeeder : IDataSeeder
     {
         private ActivityContext context;
         private List<string> prj;
