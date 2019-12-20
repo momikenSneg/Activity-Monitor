@@ -26,12 +26,12 @@ namespace ActivityMonitor
             var pr = await FillProjects();
             foreach (Database.Models.Project proj in pr)
             {
-                FillMembership(proj.Id);
+                await FillMembership(proj.Id);
                 var iss = await FillIssues(proj.Id);
 
                 foreach (Issue issue in iss)
                 {
-                    FillIssueHistory(issue);
+                    await FillIssueHistory(issue);
                 }
 
             }
