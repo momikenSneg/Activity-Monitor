@@ -33,6 +33,9 @@ namespace ActivityMonitor.Database.Models
 
             builder
                 .HasIndex(x => x.AuthorId);
+
+            builder
+                .HasIndex(x => x.MembershipId);
         }
     }
 }
