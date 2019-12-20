@@ -15,6 +15,7 @@ namespace ActivityMonitor.Database.Models
         public DateTime DueDate { get; set; }
 
         public int ProjectId { get; set; }
+        public int MembershipId { get; set; }
     }
     class IssueConfiguration : IEntityTypeConfiguration<Issue>
     {
