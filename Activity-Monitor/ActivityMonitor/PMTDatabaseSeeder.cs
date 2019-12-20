@@ -86,28 +86,30 @@ namespace ActivityMonitor
         private async Task<List<Issue>> FillIssues(int projId)
         {
             int offset = 0;
-            var issues = await pmt.GetTaskList(projId, offset);
+            var issues_list = await pmt.GetTaskList(projId, offset);
             List<Issue> save = new List<Issue>();
 
-            while(issues)
-
-            for (int i = 0; i < issues.Length; i++)
+            while(offset < issues_list.total_count)
             {
-                if (issues[i].tracker.name != "Task")
-                    continue;
-                Database.Models.Issue one = new Database.Models.Issue
+                for (int i = 0; i < issues_list.Length; i++)
                 {
-                    Id = issues[i].id,
-                    TrackerName = issues[i].tracker.name,
-                    AuthorId = issues[i].author.id,
-                    StartDate = issues[i].start_date,
-                    DueDate = issues[i].due_date,
-                    ProjectId = projId
-                };
+                    if (issues_list[i].tracker.name != "Task")
+                        continue;
+                    Database.Models.Issue one = new Database.Models.Issue
+                    {
+                        Id = issues_list[i].id,
+                        TrackerName = issues_list[i].tracker.name,
+                        AuthorId = issues_list[i].author.id,
+                        StartDate = issues_list[i].start_date,
+                        DueDate = issues_list[i].due_date,
+                        ProjectId = projId
+                    };
 
-                context.Issues.Add(one);
-                save.Add(one);
+                    context.Issues.Add(one);
+                    save.Add(one);
+                }
             }
+
             return save;
         }
 
