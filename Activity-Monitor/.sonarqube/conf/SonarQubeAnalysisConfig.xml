@@ -4,14 +4,14 @@
   <SonarOutputDir>C:\Users\Anton\Downloads\THE REAL SCIENCE\УППРПО\Activity-Monitor\Activity-Monitor\.sonarqube\out</SonarOutputDir>
   <SonarBinDir>C:\Users\Anton\Downloads\THE REAL SCIENCE\УППРПО\Activity-Monitor\Activity-Monitor\.sonarqube\bin</SonarBinDir>
   <SonarScannerWorkingDirectory>C:\Users\Anton\Downloads\THE REAL SCIENCE\УППРПО\Activity-Monitor\Activity-Monitor</SonarScannerWorkingDirectory>
-  <HasBeginStepCommandLineCredentials>true</HasBeginStepCommandLineCredentials>
+  <HasBeginStepCommandLineCredentials>false</HasBeginStepCommandLineCredentials>
   <SonarQubeHostUrl>http://84.237.50.237:9000</SonarQubeHostUrl>
   <SonarQubeVersion>7.7.0.23042</SonarQubeVersion>
   <SonarProjectKey>AM</SonarProjectKey>
   <AdditionalConfig>
     <ConfigSetting Id="BuildUri" />
     <ConfigSetting Id="TfsUri" />
-    <ConfigSetting Id="settings.file.path" Value="C:\Users\Anton\Downloads\sonar-scanner-msbuild-4.7.1.2311-net46\SonarQube.Analysis.xml" />
+    <ConfigSetting Id="settings.file.path" Value="C:\Users\Anton\Documents\sonar-scanner-msbuild-4.7.1.2311-net46\SonarQube.Analysis.xml" />
   </AdditionalConfig>
   <ServerSettings>
     <Property Name="sonaranalyzer-cs.nuget.packageVersion">7.11.0.8083</Property>
@@ -100,11 +100,9 @@
     <Property Name="sonar.java.collectAnalysisErrors">false</Property>
     <Property Name="sonar.updatecenter.url">https://update.sonarsource.org/update-center.properties</Property>
     <Property Name="sonar.core.id">A83AB5B1-AW6ReoikJohA1ldg_q_O</Property>
-    <Property Name="sonar.core.startTime">06.12.2019 9:50:16</Property>
+    <Property Name="sonar.core.startTime">19.12.2019 22:59:37</Property>
   </ServerSettings>
-  <LocalSettings>
-    <Property Name="sonar.host.url">http://84.237.50.237:9000</Property>
-  </LocalSettings>
+  <LocalSettings />
   <AnalyzersSettings>
     <AnalyzerSettings>
       <Language>cs</Language>
@@ -113,16 +111,16 @@
       <AnalyzerPlugins>
         <AnalyzerPlugin Key="csharp" Version="7.11.0.8083" StaticResourceName="SonarAnalyzer-7.11.0.8083.zip">
           <AssemblyPaths>
-            <Path>C:\Users\Anton\AppData\Local\Temp\.sonarqube\resources\0\Google.Protobuf.dll</Path>
-            <Path>C:\Users\Anton\AppData\Local\Temp\.sonarqube\resources\0\SonarAnalyzer.CSharp.dll</Path>
-            <Path>C:\Users\Anton\AppData\Local\Temp\.sonarqube\resources\0\SonarAnalyzer.dll</Path>
+            <Path>C:\Users\Anton\AppData\Local\Temp\.sonarqube\resources\2\Google.Protobuf.dll</Path>
+            <Path>C:\Users\Anton\AppData\Local\Temp\.sonarqube\resources\2\SonarAnalyzer.CSharp.dll</Path>
+            <Path>C:\Users\Anton\AppData\Local\Temp\.sonarqube\resources\2\SonarAnalyzer.dll</Path>
           </AssemblyPaths>
         </AnalyzerPlugin>
         <AnalyzerPlugin Key="vbnet" Version="7.11.0.8083" StaticResourceName="SonarAnalyzer-7.11.0.8083.zip">
           <AssemblyPaths>
-            <Path>C:\Users\Anton\AppData\Local\Temp\.sonarqube\resources\1\Google.Protobuf.dll</Path>
-            <Path>C:\Users\Anton\AppData\Local\Temp\.sonarqube\resources\1\SonarAnalyzer.dll</Path>
-            <Path>C:\Users\Anton\AppData\Local\Temp\.sonarqube\resources\1\SonarAnalyzer.VisualBasic.dll</Path>
+            <Path>C:\Users\Anton\AppData\Local\Temp\.sonarqube\resources\3\Google.Protobuf.dll</Path>
+            <Path>C:\Users\Anton\AppData\Local\Temp\.sonarqube\resources\3\SonarAnalyzer.dll</Path>
+            <Path>C:\Users\Anton\AppData\Local\Temp\.sonarqube\resources\3\SonarAnalyzer.VisualBasic.dll</Path>
           </AssemblyPaths>
         </AnalyzerPlugin>
       </AnalyzerPlugins>
@@ -137,16 +135,16 @@
       <AnalyzerPlugins>
         <AnalyzerPlugin Key="csharp" Version="7.11.0.8083" StaticResourceName="SonarAnalyzer-7.11.0.8083.zip">
           <AssemblyPaths>
-            <Path>C:\Users\Anton\AppData\Local\Temp\.sonarqube\resources\0\Google.Protobuf.dll</Path>
-            <Path>C:\Users\Anton\AppData\Local\Temp\.sonarqube\resources\0\SonarAnalyzer.CSharp.dll</Path>
-            <Path>C:\Users\Anton\AppData\Local\Temp\.sonarqube\resources\0\SonarAnalyzer.dll</Path>
+            <Path>C:\Users\Anton\AppData\Local\Temp\.sonarqube\resources\2\Google.Protobuf.dll</Path>
+            <Path>C:\Users\Anton\AppData\Local\Temp\.sonarqube\resources\2\SonarAnalyzer.CSharp.dll</Path>
+            <Path>C:\Users\Anton\AppData\Local\Temp\.sonarqube\resources\2\SonarAnalyzer.dll</Path>
           </AssemblyPaths>
         </AnalyzerPlugin>
         <AnalyzerPlugin Key="vbnet" Version="7.11.0.8083" StaticResourceName="SonarAnalyzer-7.11.0.8083.zip">
           <AssemblyPaths>
-            <Path>C:\Users\Anton\AppData\Local\Temp\.sonarqube\resources\1\Google.Protobuf.dll</Path>
-            <Path>C:\Users\Anton\AppData\Local\Temp\.sonarqube\resources\1\SonarAnalyzer.dll</Path>
-            <Path>C:\Users\Anton\AppData\Local\Temp\.sonarqube\resources\1\SonarAnalyzer.VisualBasic.dll</Path>
+            <Path>C:\Users\Anton\AppData\Local\Temp\.sonarqube\resources\3\Google.Protobuf.dll</Path>
+            <Path>C:\Users\Anton\AppData\Local\Temp\.sonarqube\resources\3\SonarAnalyzer.dll</Path>
+            <Path>C:\Users\Anton\AppData\Local\Temp\.sonarqube\resources\3\SonarAnalyzer.VisualBasic.dll</Path>
           </AssemblyPaths>
         </AnalyzerPlugin>
       </AnalyzerPlugins>
