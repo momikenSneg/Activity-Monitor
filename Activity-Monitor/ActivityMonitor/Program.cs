@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using ActivityMonitor.Database;
 
 namespace ActivityMonitor
 {
@@ -18,7 +19,16 @@ namespace ActivityMonitor
             {
                 string json = r.ReadToEnd();
                 var config = JsonConvert.DeserializeObject<Configuration>(json);
+                ActivityContext context = new ActivityContext();
+                PMTDatabaseSeeder seeder = new PMTDatabaseSeeder(
+                    context,
+                    config.PMTProjects,
+                    config.PMTLogin,
+                    config.PMTPassword,
+                    config.PMTUri
+                    );
 
+                //await seeder.Seed();
             }
         }
     }
