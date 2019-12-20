@@ -123,7 +123,7 @@ namespace ActivityMonitor
             return save;
         }
 
-        private async void FillIssueHistory(Issue issue)
+        private async System.Threading.Tasks.Task FillIssueHistory(Issue issue)
         {
             var history = await pmt.GetTaskHistory(issue.Id);
             Journal one;
