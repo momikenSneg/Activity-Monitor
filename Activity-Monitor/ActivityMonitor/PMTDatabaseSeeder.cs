@@ -131,8 +131,9 @@ namespace ActivityMonitor
                     NewValue = history[i].details[0].new_value,
                     IssueId = issue.Item1.Id
                 };
+                context.Journals.Add(one);
             }
-            context.Journals.Add(one);
+            
         }
 
         private string GetStatus(int id)
