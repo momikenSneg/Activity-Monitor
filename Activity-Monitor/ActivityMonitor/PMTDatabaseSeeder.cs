@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Task = ActivityMonitor.PMT.Task;
 
 namespace ActivityMonitor
 {
@@ -86,11 +87,14 @@ namespace ActivityMonitor
         private async Task<List<Issue>> FillIssues(int projId)
         {
             int offset = 0;
-            var issues_list = await pmt.GetTaskList(projId, offset);
+            Tasks issues_list;
+            Task[] issues;
             List<Issue> save = new List<Issue>();
 
-            while(offset < issues_list.total_count)
+            do
             {
+                issues_list = await pmt.GetTaskList(projId, offset);
+                issues = issues_list.issues;
                 for (int i = 0; i < issues_list.Length; i++)
                 {
                     if (issues_list[i].tracker.name != "Task")
@@ -108,7 +112,7 @@ namespace ActivityMonitor
                     context.Issues.Add(one);
                     save.Add(one);
                 }
-            }
+            } while (offset < issues_list.total_count);
 
             return save;
         }
