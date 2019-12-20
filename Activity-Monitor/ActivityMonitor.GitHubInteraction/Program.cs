@@ -32,7 +32,7 @@ namespace ActivityMonitor.GitHubInteraction
             var ser = new DataContractJsonSerializer(typeof(AuthGitInfo));
             ser.WriteObject(stream1, a);
         }
-        static static async Task Main(string[] args)
+        static async Task Main(string[] args)
         {
             AuthGitInfo info;
             using (Stream fs = GetStream())
