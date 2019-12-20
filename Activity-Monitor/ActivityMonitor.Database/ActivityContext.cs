@@ -5,11 +5,6 @@ namespace ActivityMonitor.Database
 {
     public class ActivityContext : DbContext
     {
-        //public ActivityContext(DbContextOptions<ActivityContext> options)
-        //   : base(options)
-        //{
-        //}
-
         //Git
         public DbSet<CodeComplexity> CodeComplexitySamples { get; set; }
         public DbSet<CodeString> CodeStrings { get; set; }
