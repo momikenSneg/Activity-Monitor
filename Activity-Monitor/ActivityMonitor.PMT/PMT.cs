@@ -12,17 +12,17 @@ namespace ActivityMonitor.PMT
         {
         }
 
-        public override async Task<Project[]> GetProjects(int offset)
+        public override async Task<Project[]> GetProjects()
         {
-            var str = await _client.GetStringAsync($"/projects.json?offset={offset}");
+            var str = await _client.GetStringAsync($"/projects.json");
             var projects = JsonConvert.DeserializeObject<Projects>(str);
 
             return projects.projects;
         }
 
-        public override async Task<Membership[]> GetProjectUsers(int id, int offset)
+        public override async Task<Membership[]> GetProjectUsers(int id)
         {
-            string url = $"/projects/{id}/memberships.json?offset={offset}";
+            string url = $"/projects/{id}/memberships.json";
             var str = await base._client.GetStringAsync(url);
             var memberships = JsonConvert.DeserializeObject<Memberships>(str);
 
