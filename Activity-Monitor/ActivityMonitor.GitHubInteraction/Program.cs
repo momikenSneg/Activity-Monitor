@@ -6,6 +6,7 @@ namespace ActivityMonitor.GitHubInteraction
 {
     class Program
     {
+        public readonly string GitAuthPath = "gitAuth.json";             
         public static void InitJson()
         {
             var am = new RepositoryAttribute
@@ -32,7 +33,7 @@ namespace ActivityMonitor.GitHubInteraction
             var ser = new DataContractJsonSerializer(typeof(AuthGitInfo));
             ser.WriteObject(stream1, a);
         }
-        static async Task Main(string[] args)
+        public static async Task Main()
         {
             AuthGitInfo info;
             using (Stream fs = GetStream())

@@ -1,14 +1,17 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.IO;
-using System.Threading.Tasks;
 using ActivityMonitor.Database;
+using System.Threading.Tasks;
 
+
+
+//АКТУАЛЬНЫЙ
 namespace ActivityMonitor
 {
     class Program
     {
-        public static async Task Main(string[] args)
+        static async Task Main(string[] args)
         {
             if (args == null)
             {
@@ -19,6 +22,7 @@ namespace ActivityMonitor
             {
                 string json = r.ReadToEnd();
                 var config = JsonConvert.DeserializeObject<Configuration>(json);
+
                 ActivityContext context = new ActivityContext();
                 PMTDatabaseSeeder seeder = new PMTDatabaseSeeder(
                     context,
@@ -30,6 +34,7 @@ namespace ActivityMonitor
 
                 await seeder.Seed();
             }
+
         }
     }
 }

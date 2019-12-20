@@ -11,12 +11,13 @@ namespace ActivityMonitor.Database.Models
         public int Id { get; set; }
         public int AuthorId { get; set; }
         public string Notes { get; set; }
-        public DateTime CreatedOn { get; set; }
+        public DateTime CreatedOn{ get; set; }
         public string NameChange { get; set; }
         public string OldValue { get; set; }
         public string NewValue { get; set; }
         public int IssueId { get; set; }
     }
+
     class JournalConfiguration : IEntityTypeConfiguration<Journal>
     {
         public void Configure(EntityTypeBuilder<Journal> builder)

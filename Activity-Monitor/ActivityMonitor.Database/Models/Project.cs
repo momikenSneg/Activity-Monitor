@@ -16,6 +16,7 @@ namespace ActivityMonitor.Database.Models
         public DateTime Updated_on { get; set; }
         public ICollection<ProjectMembership> Memberships { get; set; }
         public ICollection<Issue> Issues { get; set; }
+
     }
 
     class ProjectConfig : IEntityTypeConfiguration<Project>

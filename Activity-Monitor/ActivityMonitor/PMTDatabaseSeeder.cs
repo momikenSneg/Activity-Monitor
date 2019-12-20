@@ -12,7 +12,7 @@ using Task = ActivityMonitor.PMT.Task;
 
 namespace ActivityMonitor
 {
-    class PMTDatabaseSeeder : IDatabaseSeeder
+    class PMTDatabaseSeeder
     {
         private ActivityContext context;
         private List<string> prj;
@@ -28,8 +28,7 @@ namespace ActivityMonitor
         public async System.Threading.Tasks.Task Seed()
         {
             var pr = await FillProjects();
-            foreach (Project proj in pr)
-            {
+            foreach (Project proj in pr){
                 await FillMembership(proj.Id);
                 var iss = await FillIssues(proj.Id);
 
@@ -92,7 +91,7 @@ namespace ActivityMonitor
         private async Task<List<Issue>> FillIssues(int projId)
         {
             int offset = 0;
-            List<Issue> save = new List<Issue>();
+            List<Issue> save = new List<Issue> ();
 
             Tasks issues_list;
             Task[] issues;
@@ -158,7 +157,7 @@ namespace ActivityMonitor
                     context.Journals.Add(one);
                 }
             }
-
+            
         }
 
         private string GetStatus(int id)

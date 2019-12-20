@@ -1,10 +1,16 @@
 ﻿using ActivityMonitor.Database.Models;
+using ActivityMonitor.Database.Models.Git.ActivityMonitor.Database.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ActivityMonitor.Database
 {
     public class ActivityContext : DbContext
     {
+        //public ActivityContext(DbContextOptions<ActivityContext> options)
+        //   : base(options)
+        //{
+        //}
+
         //Git
         public DbSet<CodeComplexity> CodeComplexitySamples { get; set; }
         public DbSet<CodeString> CodeStrings { get; set; }

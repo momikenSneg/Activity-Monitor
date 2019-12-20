@@ -12,9 +12,11 @@ namespace ActivityMonitor.Database.Migrations
                 name: "Developers",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     FirstName = table.Column<string>(nullable: false),
                     LastName = table.Column<string>(nullable: false),
+                    Login = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -75,7 +77,8 @@ namespace ActivityMonitor.Database.Migrations
                 name: "Repositories",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -141,8 +144,9 @@ namespace ActivityMonitor.Database.Migrations
                 name: "CodeComplexitySamples",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
-                    RepositoryId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    RepositoryId = table.Column<int>(nullable: false),
                     CalculatedAt = table.Column<DateTimeOffset>(nullable: false),
                     Value = table.Column<int>(nullable: false)
                 },
@@ -161,11 +165,14 @@ namespace ActivityMonitor.Database.Migrations
                 name: "Commits",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     GitId = table.Column<string>(nullable: false),
-                    AuthorId = table.Column<Guid>(nullable: false),
-                    RepositoryId = table.Column<Guid>(nullable: false),
-                    CreatedAt = table.Column<DateTimeOffset>(nullable: false)
+                    AuthorId = table.Column<int>(nullable: false),
+                    RepositoryId = table.Column<int>(nullable: false),
+                    CreatedAt = table.Column<DateTimeOffset>(nullable: false),
+                    Created = table.Column<int>(nullable: false),
+                    Deleted = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -188,8 +195,8 @@ namespace ActivityMonitor.Database.Migrations
                 name: "DeveloperRepositories",
                 columns: table => new
                 {
-                    DeveloperId = table.Column<Guid>(nullable: false),
-                    RepositoryId = table.Column<Guid>(nullable: false)
+                    DeveloperId = table.Column<int>(nullable: false),
+                    RepositoryId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -212,8 +219,9 @@ namespace ActivityMonitor.Database.Migrations
                 name: "Files",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
-                    RepositoryId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    RepositoryId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -231,10 +239,11 @@ namespace ActivityMonitor.Database.Migrations
                 name: "CodeStrings",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
-                    FileId = table.Column<Guid>(nullable: false),
-                    CreationCommitId = table.Column<Guid>(nullable: false),
-                    DeleteCommitId = table.Column<Guid>(nullable: true)
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    FileId = table.Column<int>(nullable: false),
+                    CreationCommitId = table.Column<int>(nullable: false),
+                    DeleteCommitId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -263,9 +272,8 @@ namespace ActivityMonitor.Database.Migrations
                 name: "CommitFiles",
                 columns: table => new
                 {
-                    CommitId = table.Column<Guid>(nullable: false),
-                    FileId = table.Column<Guid>(nullable: false),
-                    Action = table.Column<int>(nullable: false)
+                    CommitId = table.Column<int>(nullable: false),
+                    FileId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

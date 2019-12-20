@@ -17,6 +17,7 @@ namespace ActivityMonitor.Database.Models
         public int ProjectId { get; set; }
         public int MembershipId { get; set; }
     }
+
     class IssueConfiguration : IEntityTypeConfiguration<Issue>
     {
         public void Configure(EntityTypeBuilder<Issue> builder)

@@ -1,6 +1,6 @@
 ﻿using Octokit;
 using System.Threading.Tasks;
-//using ActivityMonitor.Database.Models;
+using ActivityMonitor.Database.Models.Git;
 using System.Collections.Generic;
 using ActivityMonitor.Database.Models;
 
@@ -9,7 +9,7 @@ namespace ActivityMonitor.GitHubInteraction
     class Crawler
     {
         public readonly string NameOfApp = "Activity-Monitor";
-        private readonly GitHubClient client;
+        private readonly GitHubClient client;       
 
         public Crawler(string login, string password)
         {
@@ -23,7 +23,7 @@ namespace ActivityMonitor.GitHubInteraction
         private List<File> files = new List<File>();
         private List<Database.Models.Commit> commits = new List<Database.Models.Commit>();
 
-        public async Task Gathering(RepositoryAttribute[] attributes)
+        public async Task Gathering(RepositoryAttribute [] attributes)
         {
             foreach (var attribute in attributes)
             {
@@ -31,15 +31,15 @@ namespace ActivityMonitor.GitHubInteraction
                 var name = attribute.name;
                 //var repo = new Database.Models.Repository { OwnersLogin = owner, Name = name};
                 var contrs = await client.Repository.Statistics.GetContributors(owner, name);
-                foreach (var contr in contrs)
+                foreach(var contr in contrs)
                 {
                     //if contributors isn't contains in list
-                    if (true)
+                    if(true)
                     {
 
                     }
-                    else
-                    {
+                    else 
+                    { 
 
                     }
                 }
@@ -48,3 +48,4 @@ namespace ActivityMonitor.GitHubInteraction
         }
     }
 }
+
