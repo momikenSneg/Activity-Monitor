@@ -61,7 +61,7 @@ namespace ActivityMonitor
             return save;
         }
 
-        private async void FillMembership(int projId)
+        private async System.Threading.Tasks.Task FillMembership(int projId)
         {
             var memberships = await pmt.GetProjectUsers(projId);
 
