@@ -29,7 +29,7 @@ namespace ActivityMonitor
                 FillMembership(proj.Id);
                 var iss = await FillIssues(proj.Id);
 
-                foreach (Tuple<Database.Models.Issue, string> issue in iss)
+                foreach (Issue issue in iss)
                 {
                     FillIssueHistory(issue);
                 }
@@ -123,9 +123,9 @@ namespace ActivityMonitor
             return save;
         }
 
-        private async void FillIssueHistory(Tuple<Issue, string> issue)
+        private async void FillIssueHistory(Issue issue)
         {
-            var history = await pmt.GetTaskHistory(issue.Item1.Id);
+            var history = await pmt.GetTaskHistory(issue.Id);
             Journal one;
 
             for (int i = 0; i < history.Length; i++)
@@ -141,7 +141,7 @@ namespace ActivityMonitor
                         NameChange = history[i].details[0].name,
                         OldValue = history[i].details[0].old_value,
                         NewValue = history[i].details[0].new_value,
-                        IssueId = issue.Item1.Id
+                        IssueId = issue.Id
                     };
                     context.Journals.Add(one);
                 }
