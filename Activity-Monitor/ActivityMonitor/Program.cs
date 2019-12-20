@@ -28,7 +28,7 @@ namespace ActivityMonitor
                     config.PMTUri
                     );
 
-                //await seeder.Seed();
+                await seeder.Seed();
             }
         }
     }
