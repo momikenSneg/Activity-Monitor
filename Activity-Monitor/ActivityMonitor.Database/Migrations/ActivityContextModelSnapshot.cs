@@ -21,12 +21,12 @@ namespace ActivityMonitor.Database.Migrations
 
             modelBuilder.Entity("ActivityMonitor.Database.Models.CodeComplexity", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTimeOffset>("CalculatedAt");
 
-                    b.Property<Guid>("RepositoryId");
+                    b.Property<int>("RepositoryId");
 
                     b.Property<int>("Value");
 
@@ -41,14 +41,14 @@ namespace ActivityMonitor.Database.Migrations
 
             modelBuilder.Entity("ActivityMonitor.Database.Models.CodeString", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid>("CreationCommitId");
+                    b.Property<int>("CreationCommitId");
 
-                    b.Property<Guid?>("DeleteCommitId");
+                    b.Property<int?>("DeleteCommitId");
 
-                    b.Property<Guid>("FileId");
+                    b.Property<int>("FileId");
 
                     b.HasKey("Id");
 
@@ -63,17 +63,21 @@ namespace ActivityMonitor.Database.Migrations
 
             modelBuilder.Entity("ActivityMonitor.Database.Models.Commit", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid>("AuthorId");
+                    b.Property<int>("AuthorId");
+
+                    b.Property<int>("Created");
 
                     b.Property<DateTimeOffset>("CreatedAt");
+
+                    b.Property<int>("Deleted");
 
                     b.Property<string>("GitId")
                         .IsRequired();
 
-                    b.Property<Guid>("RepositoryId");
+                    b.Property<int>("RepositoryId");
 
                     b.HasKey("Id");
 
@@ -89,24 +93,9 @@ namespace ActivityMonitor.Database.Migrations
                     b.ToTable("Commits");
                 });
 
-            modelBuilder.Entity("ActivityMonitor.Database.Models.CommitFile", b =>
-                {
-                    b.Property<Guid>("CommitId");
-
-                    b.Property<Guid>("FileId");
-
-                    b.Property<int>("Action");
-
-                    b.HasKey("CommitId", "FileId");
-
-                    b.HasIndex("FileId");
-
-                    b.ToTable("CommitFiles");
-                });
-
             modelBuilder.Entity("ActivityMonitor.Database.Models.Developer", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Email")
@@ -118,6 +107,8 @@ namespace ActivityMonitor.Database.Migrations
                     b.Property<string>("LastName")
                         .IsRequired();
 
+                    b.Property<string>("Login");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
@@ -128,9 +119,9 @@ namespace ActivityMonitor.Database.Migrations
 
             modelBuilder.Entity("ActivityMonitor.Database.Models.DeveloperRepository", b =>
                 {
-                    b.Property<Guid>("DeveloperId");
+                    b.Property<int>("DeveloperId");
 
-                    b.Property<Guid>("RepositoryId");
+                    b.Property<int>("RepositoryId");
 
                     b.HasKey("DeveloperId", "RepositoryId");
 
@@ -141,19 +132,32 @@ namespace ActivityMonitor.Database.Migrations
 
             modelBuilder.Entity("ActivityMonitor.Database.Models.File", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.Property<Guid>("RepositoryId");
+                    b.Property<int>("RepositoryId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("RepositoryId");
 
                     b.ToTable("Files");
+                });
+
+            modelBuilder.Entity("ActivityMonitor.Database.Models.Git.ActivityMonitor.Database.Models.CommitFile", b =>
+                {
+                    b.Property<int>("CommitId");
+
+                    b.Property<int>("FileId");
+
+                    b.HasKey("CommitId", "FileId");
+
+                    b.HasIndex("FileId");
+
+                    b.ToTable("CommitFiles");
                 });
 
             modelBuilder.Entity("ActivityMonitor.Database.Models.Issue", b =>
@@ -165,7 +169,7 @@ namespace ActivityMonitor.Database.Migrations
 
                     b.Property<DateTime>("DueDate");
 
-                    b.Property<int?>("MembershipId");
+                    b.Property<int>("MembershipId");
 
                     b.Property<int>("ProjectId");
 
@@ -267,7 +271,7 @@ namespace ActivityMonitor.Database.Migrations
 
             modelBuilder.Entity("ActivityMonitor.Database.Models.Repository", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name")
@@ -320,19 +324,6 @@ namespace ActivityMonitor.Database.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
-            modelBuilder.Entity("ActivityMonitor.Database.Models.CommitFile", b =>
-                {
-                    b.HasOne("ActivityMonitor.Database.Models.Commit", "Commit")
-                        .WithMany("Files")
-                        .HasForeignKey("CommitId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("ActivityMonitor.Database.Models.File", "File")
-                        .WithMany("Commits")
-                        .HasForeignKey("FileId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
             modelBuilder.Entity("ActivityMonitor.Database.Models.DeveloperRepository", b =>
                 {
                     b.HasOne("ActivityMonitor.Database.Models.Developer", "Developer")
@@ -354,11 +345,25 @@ namespace ActivityMonitor.Database.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
+            modelBuilder.Entity("ActivityMonitor.Database.Models.Git.ActivityMonitor.Database.Models.CommitFile", b =>
+                {
+                    b.HasOne("ActivityMonitor.Database.Models.Commit", "Commit")
+                        .WithMany("Files")
+                        .HasForeignKey("CommitId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ActivityMonitor.Database.Models.File", "File")
+                        .WithMany("Commits")
+                        .HasForeignKey("FileId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
             modelBuilder.Entity("ActivityMonitor.Database.Models.Issue", b =>
                 {
                     b.HasOne("ActivityMonitor.Database.Models.Membership")
                         .WithMany("Issues")
-                        .HasForeignKey("MembershipId");
+                        .HasForeignKey("MembershipId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("ActivityMonitor.Database.Models.Project")
                         .WithMany("Issues")
