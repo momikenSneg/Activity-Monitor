@@ -7,7 +7,10 @@ namespace ActivityMonitor
     {
         public static async Task Main(string[] args)
         {
-            Console.WriteLine("Activity monitor!");
+            if (args == null)
+            {
+                throw new ArgumentNullException(nameof(args));
+            }
         }
     }
 }
