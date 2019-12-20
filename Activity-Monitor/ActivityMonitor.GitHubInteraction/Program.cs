@@ -8,5 +8,10 @@ namespace ActivityMonitor.GitHubInteraction
         {
             Console.WriteLine("Hello World!");
         }
+
+        private static Stream GetStream()
+        {
+            return File.OpenRead("gitAuth.json");
+        }
     }
 }
