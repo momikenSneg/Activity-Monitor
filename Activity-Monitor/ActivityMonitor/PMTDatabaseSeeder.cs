@@ -118,19 +118,21 @@ namespace ActivityMonitor
 
             for (int i = 0; i < history.Length; i++)
             {
-
-                one = new Journal
+                if (history[i].details.Length > 0)
                 {
-                    Id = history[i].id,
-                    AuthorId = history[i].user.id,
-                    Notes = history[i].notes,
-                    CreatedOn = history[i].created_on,
-                    NameChange = history[i].details[0].name,
-                    OldValue = history[i].details[0].old_value,
-                    NewValue = history[i].details[0].new_value,
-                    IssueId = issue.Item1.Id
-                };
-                context.Journals.Add(one);
+                    one = new Journal
+                    {
+                        Id = history[i].id,
+                        AuthorId = history[i].user.id,
+                        Notes = history[i].notes,
+                        CreatedOn = history[i].created_on,
+                        NameChange = history[i].details[0].name,
+                        OldValue = history[i].details[0].old_value,
+                        NewValue = history[i].details[0].new_value,
+                        IssueId = issue.Item1.Id
+                    };
+                    context.Journals.Add(one);
+                }
             }
             
         }
