@@ -95,17 +95,18 @@ namespace ActivityMonitor
             {
                 issues_list = await pmt.GetTaskList(projId, offset);
                 issues = issues_list.issues;
-                for (int i = 0; i < issues_list.Length; i++)
+
+                for (int i = 0; i < issues.Length; i++)
                 {
-                    if (issues_list[i].tracker.name != "Task")
+                    if (issues[i].tracker.name != "Task")
                         continue;
                     Database.Models.Issue one = new Database.Models.Issue
                     {
-                        Id = issues_list[i].id,
-                        TrackerName = issues_list[i].tracker.name,
-                        AuthorId = issues_list[i].author.id,
-                        StartDate = issues_list[i].start_date,
-                        DueDate = issues_list[i].due_date,
+                        Id = issues[i].id,
+                        TrackerName = issues[i].tracker.name,
+                        AuthorId = issues[i].author.id,
+                        StartDate = issues[i].start_date,
+                        DueDate = issues[i].due_date,
                         ProjectId = projId
                     };
 
