@@ -39,7 +39,7 @@ namespace ActivityMonitor
         private async Task<List<Database.Models.Project>> FillProjects()
         {
             List<Database.Models.Project> save = new List<Database.Models.Project>();
-            var projects = await pmt.GetProjects(0);
+            var projects = await pmt.GetProjects();
             for (int i = 0; i < projects.Length; i++)
             {
                 if (!prj.Contains(projects[i].name))
@@ -62,7 +62,7 @@ namespace ActivityMonitor
 
         private async void FillMembership(int projId)
         {
-            var memberships = await pmt.GetProjectUsers(projId, 0);
+            var memberships = await pmt.GetProjectUsers(projId);
 
             for (int i = 0; i < memberships.Length; i++)
             {
