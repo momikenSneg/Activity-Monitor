@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Http;
+using System.Runtime.Serialization.Json;
 using Newtonsoft.Json;
 
 namespace ActivityMonitor.PMT
@@ -14,7 +16,7 @@ namespace ActivityMonitor.PMT
 
         public override async Task<Project[]> GetProjects()
         {
-            var str = await _client.GetStringAsync($"/projects.json");
+            var str = await _client.GetStringAsync("/projects.json");
             var projects = JsonConvert.DeserializeObject<Projects>(str);
 
             return projects.projects;
