@@ -92,8 +92,11 @@ namespace ActivityMonitor.PMT
     public class Issues
     {
         public Issue[] issues { get; set; }
+        public int total_count { get; set; }
+        public int offset { get; set; }
+        public int limit { get; set; }
 
-}
+    }
     public class Issue
     {
         public int id { get; set; }
