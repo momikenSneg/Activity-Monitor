@@ -1,0 +1,9 @@
+{
+    "PMTUri": "https://ai.nsu.ru",
+	"PMTLogin": "e.snegireva",
+	"PMTPassword": "********",
+	"PMTProjects": 
+	[
+		"name": "ActivityMonitor"
+	]
+}
