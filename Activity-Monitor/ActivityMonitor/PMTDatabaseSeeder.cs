@@ -21,7 +21,7 @@ namespace ActivityMonitor
             prj = projects;
             pmt = new PMT.PMT(name, password, new Uri(url));
         }
-        public async void Seed()
+        public async System.Threading.Tasks.Task Seed()
         {
             var pr = await FillProjects();
             foreach (Database.Models.Project proj in pr)
