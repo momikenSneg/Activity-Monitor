@@ -6,6 +6,6 @@ namespace ActivityMonitor
 {
     interface IDatabaseSeeder
     {
-        void Seed();
+        System.Threading.Tasks.Task Seed();
     }
 }
