@@ -1,10 +1,13 @@
-﻿using ActivityMonitor.Database;
-using ActivityMonitor.Database.Models;
-using ActivityMonitor.PMT;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ActivityMonitor.Database.Models;
+using ActivityMonitor.Database;
+using ActivityMonitor.PMT;
+using Project = ActivityMonitor.Database.Models.Project;
 using System.Threading.Tasks;
+using Membership = ActivityMonitor.Database.Models.Membership;
+using Issue = ActivityMonitor.Database.Models.Issue;
 using Task = ActivityMonitor.PMT.Task;
 
 namespace ActivityMonitor
@@ -21,10 +24,11 @@ namespace ActivityMonitor
             prj = projects;
             pmt = new PMT.PMT(name, password, new Uri(url));
         }
+
         public async System.Threading.Tasks.Task Seed()
         {
             var pr = await FillProjects();
-            foreach (Database.Models.Project proj in pr)
+            foreach (Project proj in pr)
             {
                 await FillMembership(proj.Id);
                 var iss = await FillIssues(proj.Id);
@@ -35,17 +39,18 @@ namespace ActivityMonitor
                 }
 
             }
+            context.SaveChanges();
         }
 
-        private async Task<List<Database.Models.Project>> FillProjects()
+        private async Task<List<Project>> FillProjects()
         {
-            List<Database.Models.Project> save = new List<Database.Models.Project>();
+            List<Project> save = new List<Project>();
             var projects = await pmt.GetProjects();
             for (int i = 0; i < projects.Length; i++)
             {
                 if (!prj.Contains(projects[i].name))
                     continue;
-                Database.Models.Project one = new Database.Models.Project
+                Project one = new Project
                 {
                     Id = projects[i].id,
                     Name = projects[i].name,
@@ -67,7 +72,7 @@ namespace ActivityMonitor
 
             for (int i = 0; i < memberships.Length; i++)
             {
-                Database.Models.Membership one = new Database.Models.Membership
+                Membership one = new Membership
                 {
                     Id = memberships[i].user.id,
                     Name = memberships[i].user.name
@@ -91,10 +96,12 @@ namespace ActivityMonitor
 
             Tasks issues_list;
             Task[] issues;
+
             do
             {
                 issues_list = await pmt.GetTaskList(projId, offset);
                 issues = issues_list.issues;
+
 
                 for (int i = 0; i < issues.Length; i++)
                 {
@@ -115,6 +122,8 @@ namespace ActivityMonitor
                     context.Issues.Add(one);
                     save.Add(one);
                 }
+
+
                 //issues_list = await pmt.GetTaskList(projId, offset);
                 //issues = issues_list.issues;
                 offset = issues_list.offset + issues_list.limit;
@@ -123,9 +132,12 @@ namespace ActivityMonitor
             return save;
         }
 
+        //TODO: добавлять в историю первое изменение на асайн то
+
         private async System.Threading.Tasks.Task FillIssueHistory(Issue issue)
         {
             var history = await pmt.GetTaskHistory(issue.Id);
+
             Journal one;
 
             for (int i = 0; i < history.Length; i++)
@@ -146,7 +158,7 @@ namespace ActivityMonitor
                     context.Journals.Add(one);
                 }
             }
-            
+
         }
 
         private string GetStatus(int id)
@@ -187,5 +199,4 @@ namespace ActivityMonitor
             return "non";
         }
     }
-}
 }
