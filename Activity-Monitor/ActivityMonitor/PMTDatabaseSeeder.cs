@@ -83,11 +83,11 @@ namespace ActivityMonitor
             }
         }
 
-        private async Task<List<Tuple<Issue, string>>> FillIssues(int projId)
+        private async Task<List<Issue>> FillIssues(int projId)
         {
             int offset = 0;
             var issues = await pmt.GetTaskList(projId, offset);
-            List<Tuple<Issue, string>> save = new List<Tuple<Issue, string>>();
+            List<Issue> save = new List<Issue>();
 
             while(issues)
 
@@ -106,7 +106,7 @@ namespace ActivityMonitor
                 };
 
                 context.Issues.Add(one);
-                save.Add(new Tuple<Issue, string>(one, issues[i].assigned_to.id.ToString()));
+                save.Add(one);
             }
             return save;
         }
