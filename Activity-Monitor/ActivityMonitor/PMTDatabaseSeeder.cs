@@ -38,7 +38,7 @@ namespace ActivityMonitor
         private async Task<List<Database.Models.Project>> FillProjects()
         {
             List<Database.Models.Project> save = new List<Database.Models.Project>();
-            var projects = await pmt.GetProjects();
+            var projects = await pmt.GetProjects(0);
             for (int i = 0; i < projects.Length; i++)
             {
                 if (!prj.Contains(projects[i].name))
@@ -61,7 +61,7 @@ namespace ActivityMonitor
 
         private async void FillMembership(int projId)
         {
-            var memberships = await pmt.GetProjectUsers(projId);
+            var memberships = await pmt.GetProjectUsers(projId, 0);
 
             for (int i = 0; i < memberships.Length; i++)
             {
@@ -84,11 +84,16 @@ namespace ActivityMonitor
 
         private async Task<List<Tuple<Database.Models.Issue, string>>> FillIssues(int projId)
         {
-            var issues = await pmt.GetTaskList(projId);
-
+            int offset = 0;
+            var issues = await pmt.GetTaskList(projId, offset);
             List<Tuple<Database.Models.Issue, string>> save = new List<Tuple<Database.Models.Issue, string>>();
+
+            while(issues)
+
             for (int i = 0; i < issues.Length; i++)
             {
+                if (issues[i].tracker.name != "Task")
+                    continue;
                 Database.Models.Issue one = new Database.Models.Issue
                 {
                     Id = issues[i].id,
@@ -127,17 +132,17 @@ namespace ActivityMonitor
             for (int i = 0; i < history.Length; i++)
             {
 
-                //one = new Journal
-                //{
-                //    Id = history[i].id,
-                //    AuthorId = history[i],
-                //    Notes = history[i],
-                //    CreatedOn = history[i],
-                //    NameChange = history[i],
-                //    OldValue = history[i],
-                //    NewValue = history[i],
-                //    IssueId = history[i]
-                //};
+                one = new Journal
+                {
+                    Id = history[i].id,
+                    AuthorId = history[i].user.id,
+                    Notes = history[i].notes,
+                    CreatedOn = history[i].created_on,
+                    NameChange = history[i].details[0].name,
+                    OldValue = history[i].details[0].old_value,
+                    NewValue = history[i].details[0].new_value,
+                    IssueId = issue.Item1.Id
+                };
             }
         }
 

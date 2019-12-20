@@ -12,17 +12,17 @@ namespace ActivityMonitor.PMT
         {
         }
 
-        public override async Task<Project[]> GetProjects()
+        public override async Task<Project[]> GetProjects(int offset)
         {
-            var str = await _client.GetStringAsync("/projects.json");
+            var str = await _client.GetStringAsync($"/projects.json?offset={offset}");
             var projects = JsonConvert.DeserializeObject<Projects>(str);
 
             return projects.projects;
         }
 
-        public override async Task<Membership[]> GetProjectUsers(int id)
+        public override async Task<Membership[]> GetProjectUsers(int id, int offset)
         {
-            string url = $"/projects/{id}/memberships.json";
+            string url = $"/projects/{id}/memberships.json?offset={offset}";
             var str = await base._client.GetStringAsync(url);
             var memberships = JsonConvert.DeserializeObject<Memberships>(str);
 
@@ -38,13 +38,13 @@ namespace ActivityMonitor.PMT
             return issueHistory.issue.journals;
         }
 
-        public override async Task<Issue[]> GetTaskList(int id)
+        public override async Task<Issues> GetTaskList(int id, int offset)
         {
-            string url = $"/issues.json?project_id={id}";
+            string url = $"/issues.json?project_id={id}&offset={offset}";
             var str = await base._client.GetStringAsync(url);
             var issues = JsonConvert.DeserializeObject<Issues>(str);
 
-            return issues.issues;
+            return issues;
         }
     }
 
@@ -87,10 +87,13 @@ namespace ActivityMonitor.PMT
         public int id { get; set; }
         public string name { get; set; }
     }
-    class Issues
+    public class Issues
     {
         public Issue[] issues { get; set; }
-    }
+        public int total_count { get; set; }
+        public int offset { get; set; }
+        public int limit { get; set; }
+}
     public class Issue
     {
         public int id { get; set; }

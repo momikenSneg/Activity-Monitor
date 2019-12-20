@@ -11,6 +11,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ActivityMonitor.Database\ActivityMonitor.Database.csproj" />
+    <ProjectReference Include="..\ActivityMonitor.PMT\ActivityMonitor.PMT.csproj" />
+    <ProjectReference Include="..\TestActivity\TestActivity.csproj" />
   </ItemGroup>
 
 </Project>
