@@ -5,7 +5,7 @@ namespace ActivityMonitor
 {
     class Program
     {
-        static async Task Main(string[] args)
+        public static async Task Main(string[] args)
         {
             Console.WriteLine("Activity monitor!");
         }
