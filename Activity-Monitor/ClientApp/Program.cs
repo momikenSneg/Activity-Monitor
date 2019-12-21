@@ -25,7 +25,10 @@ namespace ClientApp
 					case "InTest":
                         await GetClient.GetTestTasks(membership.ElementAt(0).Id, context);
                         break;
-                    
+                    case "InProgress":
+                        await GetClient.GetInProgressTasks(membership.ElementAt(0).Id, context);
+                        break;
+						
                 }
             }
         }
@@ -48,6 +51,11 @@ namespace ClientApp
                 (i, j) => new { OldVal = j.OldValue, NewVal = j.NewValue, Member = i.MembershipId }).Where(e => e.OldVal == "2" && e.NewVal == "3" && e.Member == UserId).ToListAsync();
 
             Console.Write($"{UserId} translate {prj.Count} tasks into tests");
+        }
+		
+		public static async Task GetInProgressTasks(int UserId, ActivityContext context)
+        {
+            
         }
         
     }
