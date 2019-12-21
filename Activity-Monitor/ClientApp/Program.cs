@@ -1,57 +1,65 @@
 ﻿using System;
+using System.Threading.Tasks;
+using ActivityMonitor.Database;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using ActivityMonitor.Database.Models;
+using System.Collections.Generic;
 
 namespace ClientApp
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-             if (args == null)
-            {
-                throw new ArgumentNullException(nameof(args));
-            }
-			
-			int UserId;
+            if (args == null || args.Length < 3)
+                return;
+
+            int UserId;
             Int32.TryParse(args[0], out UserId);
             ActivityContext context = new ActivityContext();
-			
-			if (args[1] == "-task")
+
+            List<Membership> membership = await context.Memberships.Where(e => e.Name == args[0]).ToListAsync();
+
+            if (args[1] == "-task")
             {
                 switch (args[2])
                 {
                     case "All":
                         await GetClient.GetAllTasks(membership.ElementAt(0).Id, context);
                         break;
-					case "InTest":
+                    case "InTest":
                         await GetClient.GetTestTasks(membership.ElementAt(0).Id, context);
                         break;
                     case "InProgress":
                         await GetClient.GetInProgressTasks(membership.ElementAt(0).Id, context);
                         break;
-					case "FromTest":
+                    case "FromTest":
                         await GetClient.GetFromTestTasks(membership.ElementAt(0).Id, context);
-                        break;	
-					case "TasksTime":
+                        break;
+                    case "TasksTime":
                         await GetClient.GetTasksTime(membership.ElementAt(0).Id, context);
                         break;
-					case "BeforeDate":
+                    case "BeforeDate":
                         await GetClient.BeforeDate(membership.ElementAt(0).Id, context, args[3]);
                         break;
                 }
             }
         }
     }
-	
-	class GetClient
+
+
+    class GetClient
     {
         public static async Task GetAllTasks(int UserId, ActivityContext context)
         {
-			var prj = await context.Issues.Where(e => e.MembershipId == UserId).ToListAsync();
+            var prj = await context.Issues.Where(e => e.MembershipId == UserId).ToListAsync();
 
             Console.Write($"{UserId} has {prj.Count} tasks");
+
         }
 
-		public static async Task GetTestTasks(int UserId, ActivityContext context)
+        public static async Task GetTestTasks(int UserId, ActivityContext context)
         {
             var prj = await context.Issues.Join(context.Journals,
                 i => i.Id,
@@ -60,8 +68,8 @@ namespace ClientApp
 
             Console.Write($"{UserId} translate {prj.Count} tasks into tests");
         }
-		
-		public static async Task GetInProgressTasks(int UserId, ActivityContext context)
+
+        public static async Task GetInProgressTasks(int UserId, ActivityContext context)
         {
             var prj = await context.Issues.Join(context.Journals,
                 i => i.Id,
@@ -70,8 +78,8 @@ namespace ClientApp
 
             Console.Write($"{UserId} translate {prj.Count} tasks into progress");
         }
-		
-		public static async Task GetFromTestTasks(int UserId, ActivityContext context)
+
+        public static async Task GetFromTestTasks(int UserId, ActivityContext context)
         {
             var prj = await context.Issues.Join(context.Journals,
                 i => i.Id,
@@ -80,8 +88,8 @@ namespace ClientApp
 
             Console.Write($"{UserId} translate {prj.Count} returned from test");
         }
-		
-		public static async Task GetTasksTime(int UserId, ActivityContext context)
+
+        public static async Task GetTasksTime(int UserId, ActivityContext context)
         {
             var prj = await context.Issues.Where(e => e.MembershipId == UserId).ToListAsync();
 
@@ -92,8 +100,8 @@ namespace ClientApp
                 Console.Write($"{iss.Id} task time: {time.ToString("%d")} days\n");
             }
         }
-		
-		public static async Task BeforeDate(int UserId, ActivityContext context, string date)
+
+        public static async Task BeforeDate(int UserId, ActivityContext context, string date)
         {
             DateTime tim = Convert.ToDateTime(date);
 
@@ -105,6 +113,5 @@ namespace ClientApp
                 Console.Write($"{iss.Id} task time: {iss.DueDate.ToString("MM/dd/yyyy HH:mm:ss")} days\n");
             }
         }
-        
     }
 }
