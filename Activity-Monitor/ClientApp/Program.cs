@@ -31,6 +31,9 @@ namespace ClientApp
 					case "FromTest":
                         await GetClient.GetFromTestTasks(membership.ElementAt(0).Id, context);
                         break;	
+					case "TasksTime":
+                        await GetClient.GetTasksTime(membership.ElementAt(0).Id, context);
+                        break;
                 }
             }
         }
@@ -73,6 +76,11 @@ namespace ClientApp
                 (i, j) => new { OldVal = j.OldValue, NewVal = j.NewValue, Member = i.MembershipId }).Where(e => e.OldVal == "3" && e.NewVal == "2" && e.Member == UserId).ToListAsync();
 
             Console.Write($"{UserId} translate {prj.Count} returned from test");
+        }
+		
+		public static async Task GetTasksTime(int UserId, ActivityContext context)
+        {
+            
         }
         
     }
