@@ -10,6 +10,10 @@ namespace ClientApp
             {
                 throw new ArgumentNullException(nameof(args));
             }
+			
+			int UserId;
+            Int32.TryParse(args[0], out UserId);
+            ActivityContext context = new ActivityContext();
         }
     }
 }
