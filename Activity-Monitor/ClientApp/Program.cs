@@ -67,7 +67,12 @@ namespace ClientApp
 		
 		public static async Task GetFromTestTasks(int UserId, ActivityContext context)
         {
-            
+            var prj = await context.Issues.Join(context.Journals,
+                i => i.Id,
+                j => j.IssueId,
+                (i, j) => new { OldVal = j.OldValue, NewVal = j.NewValue, Member = i.MembershipId }).Where(e => e.OldVal == "3" && e.NewVal == "2" && e.Member == UserId).ToListAsync();
+
+            Console.Write($"{UserId} translate {prj.Count} returned from test");
         }
         
     }
