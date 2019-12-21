@@ -12,11 +12,12 @@ using Task = ActivityMonitor.PMT.Task;
 
 namespace ActivityMonitor
 {
-    class PMTDatabaseSeeder : IDataSeeder
+    class PMTDatabaseSeeder
     {
         private ActivityContext context;
         private List<string> prj;
         private APMT pmt;
+        Random random = new Random();
         public PMTDatabaseSeeder(ActivityContext c, List<string> projects, string name, string password, string url)
         {
             context = c;
