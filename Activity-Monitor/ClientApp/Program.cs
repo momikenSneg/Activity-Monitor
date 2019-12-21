@@ -6,7 +6,10 @@ namespace ClientApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+             if (args == null)
+            {
+                throw new ArgumentNullException(nameof(args));
+            }
         }
     }
 }
