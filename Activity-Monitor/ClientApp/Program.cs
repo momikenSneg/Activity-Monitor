@@ -80,7 +80,14 @@ namespace ClientApp
 		
 		public static async Task GetTasksTime(int UserId, ActivityContext context)
         {
-            
+            var prj = await context.Issues.Where(e => e.MembershipId == UserId).ToListAsync();
+
+            foreach (Issue iss in prj){
+
+                var time = iss.DueDate.Subtract(iss.StartDate);
+
+                Console.Write($"{iss.Id} task time: {time.ToString("%d")} days\n");
+            }
         }
         
     }
