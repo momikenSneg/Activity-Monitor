@@ -34,6 +34,9 @@ namespace ClientApp
 					case "TasksTime":
                         await GetClient.GetTasksTime(membership.ElementAt(0).Id, context);
                         break;
+					case "BeforeDate":
+                        await GetClient.BeforeDate(membership.ElementAt(0).Id, context, args[3]);
+                        break;
                 }
             }
         }
@@ -88,6 +91,11 @@ namespace ClientApp
 
                 Console.Write($"{iss.Id} task time: {time.ToString("%d")} days\n");
             }
+        }
+		
+		public static async Task BeforeDate(int UserId, ActivityContext context, string date)
+        {
+            
         }
         
     }
