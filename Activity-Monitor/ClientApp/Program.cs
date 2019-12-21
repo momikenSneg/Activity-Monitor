@@ -22,6 +22,9 @@ namespace ClientApp
                     case "All":
                         await GetClient.GetAllTasks(membership.ElementAt(0).Id, context);
                         break;
+					case "InTest":
+                        await GetClient.GetTestTasks(membership.ElementAt(0).Id, context);
+                        break;
                     
                 }
             }
@@ -37,6 +40,10 @@ namespace ClientApp
             Console.Write($"{UserId} has {prj.Count} tasks");
         }
 
+		public static async Task GetTestTasks(int UserId, ActivityContext context)
+        {
+            
+        }
         
     }
 }
