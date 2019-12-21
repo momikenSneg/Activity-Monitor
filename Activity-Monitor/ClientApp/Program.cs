@@ -32,8 +32,9 @@ namespace ClientApp
     {
         public static async Task GetAllTasks(int UserId, ActivityContext context)
         {
-            
+			var prj = await context.Issues.Where(e => e.MembershipId == UserId).ToListAsync();
 
+            Console.Write($"{UserId} has {prj.Count} tasks");
         }
 
         
