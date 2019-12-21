@@ -95,7 +95,15 @@ namespace ClientApp
 		
 		public static async Task BeforeDate(int UserId, ActivityContext context, string date)
         {
-            
+            DateTime tim = Convert.ToDateTime(date);
+
+            var prj = await context.Issues.Where(e => e.MembershipId == UserId && DateTime.Compare(e.DueDate, tim) <= 0).ToListAsync();
+
+            foreach (Issue iss in prj)
+            {
+
+                Console.Write($"{iss.Id} task time: {iss.DueDate.ToString("MM/dd/yyyy HH:mm:ss")} days\n");
+            }
         }
         
     }
